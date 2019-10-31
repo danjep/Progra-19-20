@@ -284,13 +284,17 @@ Damit ist unter der Vorbedingung die partielle Korrektheit des Programms gezeigt
     \bigbreak
     \begin{tabular}{l}
         $\langle n-i=m \wedge i < n \rangle$\\
-        $\langle n-(i+1)<m \rangle$\\
+        $\langle n-(i+1)<m \wedge i < n \rangle$\\
         \quad \textbf{if (i $\%$ 2 == 0)} \pmb{\{} \\
+        \quad \quad$\langle n-(i+1)<m \wedge i < n \wedge i \mod 2 = 0\rangle$\\
         \quad \quad $\langle n-(i+1)<m \rangle$\\
         \quad \quad \quad \textbf{res = res + n;}\\
+        \quad \quad $\langle n-(i+1)<m \rangle$\\
         \quad \pmb{\}} \textbf{else} \pmb{\{} \\
+        \quad \quad$\langle n-(i+1)<m \wedge i < n \wedge \neg(i \mod 2 = 0)\rangle$\\
         \quad \quad $\langle n-(i+1)<m \rangle$\\
         \quad \quad \quad \textbf{res = res - 1;}\\
+        \quad \quad $\langle n-(i+1)<m \rangle$\\
         \quad \pmb{\}}\\
         $\langle n-(i+1)<m \rangle$\\
         \quad \textbf{i = i + 1;}\\
