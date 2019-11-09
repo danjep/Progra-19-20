@@ -5,8 +5,8 @@ public class Selection {
 
     public static void selection(int[] a) {
 
-        for (int n = 1; n < a.length; n++) {
-            int i_min = n - 1;
+        for (int n = 0; n < a.length; n++) {
+            int i_min = n;
 
             // find i_min
             for (int i = n; i < a.length; i++) {
@@ -16,8 +16,8 @@ public class Selection {
             }
 
             // switch i_min with n-1
-            int temp = a[n - 1];
-            a[n - 1] = a[i_min];
+            int temp = a[n];
+            a[n] = a[i_min];
             a[i_min] = temp;
         }
     }
