@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[ngerman]{babel}
+\usetikzlibrary{shapes.geometric, arrows}
+\pagestyle{empty}
+\titleformat*{\section}{\large\bfseries}
+
+%
+\geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=30mm,
+ }
+
+\date{}
+%Bitte ausfüllen
+\newcommand\course{Programmierung, Gruppe 16}
+\newcommand\hwnumber{3}
+\newcommand\Name{Maximilian Petri, 405602}
+\newcommand\Neptun{Danje Petersen, 379748}
+
+%Matheinheiten
+\newcommand\m{\:\textrm{m}}
+\newcommand\M{\:\Big[\textrm{m}\Big]}
+\newcommand\mm{\:\textrm{mm}}
+\newcommand\MM{\:\Big[\textrm{mm}\Big]}
+\newcommand\un{\underline}
+\newcommand\s{\:\textrm{s}}
+\newcommand\bS{\:\Big[\textrm{S}\Big]}
+\newcommand\ms{\:\frac{\textrm{m}}{\textrm{s}}}
+\newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
+\newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
+\newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%Einstellungen für lstlisting
+\lstset{
+basicstyle=\fontsize{13}{14}\selectfont\ttfamily, 
+keywordstyle=\color{purple}\bfseries,           % keywords purple
+commentstyle=\color{gray},                     % white comments
+stringstyle=\color{blue},                       % strings blue
+showstringspaces=false,
+language= java}                          % typewriter type for strings                       
+
+
+%Bitte nicht einstellen
+
+\renewcommand{\thesection}{Aufgabe }
+\renewcommand{\thesubsection}{\alph{subsection})}
+\renewcommand{\thesubsubsection}{\hspace{0.8cm}\roman{subsubsection})}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\Name\\\Neptun}
+\chead{\textbf{\Large Hausaufgabe \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section{2)}
+\begin{lstlisting}
+public class Selection {
+
+    public static void selection(int[] a) {
+
+        for (int n = 1; n < a.length; n++) {
+            int i_min = n - 1;
+
+            // find i_min
+            for (int i = n; i < a.length; i++) {
+                if (a[i] < a[i_min]) {
+                    i_min = i;
+                }
+            }
+
+            // switch i_min with n-1
+            int temp = a[n - 1];
+            a[n - 1] = a[i_min];
+            a[i_min] = temp;
+        }
+    }
+}
+\end{lstlisting}
+
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{4)}
+\subsection{}
+\begin{center}
+    Partielle Korrektheit:\\
+    Die Schleifeninvariante ist $ \langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \rangle$ .
+    \bigbreak
+    \begin{tabular}{l}
+        $\langle true \rangle$\\
+        $\langle 0 = 0 \wedge false = false \rangle$\\
+        \quad \textbf{i = 0;}\\
+        $\langle i = 0 \wedge false = false \rangle$\\
+        \quad \textbf{res = false;}\\
+        $\langle i = 0 \wedge res = false \rangle$\\
+        $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \land i \leq a.length \rangle$\\
+        \quad \textbf{while (i \pmb{$<$} a.length) \{}\\
+        \quad \quad $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \wedge i \leq a.length \land i < a.length \rangle$\\
+        \quad \quad \quad \textbf{if (x == a[i]) \{}\\
+        \quad \quad \quad \quad $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \wedge i \leq a.length \wedge x = a[i] \rangle$\\
+        \quad \quad \quad \quad $\langle true = x \epsilon \{a[j] \ | \ 0 \leq j \leq i+1\} \wedge i+1 \leq a.length \rangle$\\
+        \quad \quad \quad \quad \quad \textbf{res = true;}\\
+        \quad \quad \quad \quad $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i+1\} \wedge i+1 \leq a.length \rangle$\\
+        \quad \quad \quad \textbf{\}}\\
+        \quad \quad $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i+1\} \wedge i+1 \leq a.length \rangle$\\
+        \quad \quad \quad \textbf{i = i + 1;}\\
+        \quad \quad $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \wedge i \leq a.length \rangle$\\
+        \quad \textbf{\}}\\
+        $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq i\} \wedge i \leq a.length \wedge \neg(i < a.length) \rangle$\\
+        $\langle res = x \epsilon \{a[j] \ | \ 0 \leq j \leq a.length-1\} \rangle$\\
+    \end{tabular}
+    \bigbreak
+    Damit ist unter der Vorbedingung die partielle Korrektheit des Programms gezeigt.
+\end{center}
+
+\subsection{}
+\begin{center}
+    Terminierung:\\
+    Die Variante der Schleife ist $a.length - i$ .
+    \bigbreak
+    \begin{tabular}{l}
+        $\langle a.length - i = m \land i < a.length \rangle$\\
+        $\langle a.length - (i+1) < m \land i < a.length \rangle$\\
+        \quad \textbf{if (x == a[i]) \{}\\
+        \quad \quad$\langle a.length - (i+1) < m \land i < a.length \land x = a[i] \rangle$\\
+        \quad \quad$\langle a.length - (i+1) < m \rangle$\\
+        \quad \quad \quad \textbf{res = true;}\\
+        \quad \quad$\langle a.length - (i+1) < m \rangle$\\
+        \quad \textbf{\}}\\
+        $\langle a.length - (i+1) < m \rangle$\\
+        \quad \textbf{i = i + 1;}\\
+        $\langle a.length - i < m \rangle$\\
+    \end{tabular}
+    \bigbreak
+    Damit ist gezeigt, dass das Programm unter der Vorbedingung terminiert.
+\end{center}
+
+\end{document}
