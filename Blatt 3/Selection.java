@@ -15,7 +15,7 @@ public class Selection {
                 }
             }
 
-            // switch i_min with n-1
+            // switch i_min with n
             int temp = a[n];
             a[n] = a[i_min];
             a[i_min] = temp;
