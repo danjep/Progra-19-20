@@ -1,8 +1,8 @@
 /**
  * Implementation eines Rectangles
  * 
- * @author Maximilian Petri
- * @author Danje Petersen
+ * @author Maximilian Petri (405602)
+ * @author Danje Petersen (379748)
  */
 public class Rectangle {
 
