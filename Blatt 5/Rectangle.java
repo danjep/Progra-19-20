@@ -75,6 +75,48 @@ public class Rectangle {
         return new Rectangle(toCopy.getX(), toCopy.getY(), toCopy.getWidth(), toCopy.getHeight());
     }
 
+    /**
+     * Berechnet die Vereinigung der übergebenen Rectangles
+     * 
+     * @param rectangles Rectangles, welche vereinigt werden sollen.
+     * @return Die Vereiningung der Rectangles, also das größte Rectangle das alle
+     *         beinhaltet.
+     */
+    public static Rectangle union(Rectangle... rectangles) {
+        if (rectangles.length < 1) {
+            return null;
+        } else if (rectangles.length == 1) {
+            return rectangles[0];
+        } else {
+            Rectangle unionRectangle = unite(rectangles[0], rectangles[1]);
+            for (int i = 2; i < rectangles.length; i++) {
+                unionRectangle = unite(unionRectangle, rectangles[i]);
+            }
+            return unionRectangle;
+        }
+    }
+
+    /**
+     * Berechnet die Schnittmenge der übergebenen Rectangles
+     * 
+     * @param rectangles Rectangles, welche geschnitten werden sollen.
+     * @return Die Schnittmenge der Rectangles, also das größte Rectangle das in
+     *         allen enthalten ist.
+     */
+    public static Rectangle intersection(Rectangle... rectangles) {
+        if (rectangles.length < 1) {
+            return null;
+        } else if (rectangles.length == 1) {
+            return rectangles[0];
+        } else {
+            Rectangle intersectRectangle = intersect(rectangles[0], rectangles[1]);
+            for (int i = 2; i < rectangles.length; i++) {
+                intersectRectangle = intersect(intersectRectangle, rectangles[i]);
+            }
+            return intersectRectangle;
+        }
+    }
+
     //////////////////////////////////////////////////////////////////
     // public Methoden
     //////////////////////////////////////////////////////////////////
@@ -116,48 +158,6 @@ public class Rectangle {
             return RectangleSpecies.COLUMN;
         } else {
             return RectangleSpecies.OTHER;
-        }
-    }
-
-    /**
-     * Berechnet die Vereinigung der übergebenen Rectangles
-     * 
-     * @param rectangles Rectangles, welche vereinigt werden sollen.
-     * @return Die Vereiningung der Rectangles, also das größte Rectangle das alle
-     *         beinhaltet.
-     */
-    public static Rectangle union(Rectangle... rectangles) {
-        if (rectangles.length < 1) {
-            return null;
-        } else if (rectangles.length == 1) {
-            return rectangles[0];
-        } else {
-            Rectangle unionRectangle = unite(rectangles[0], rectangles[1]);
-            for (int i = 2; i < rectangles.length; i++) {
-                unionRectangle = unite(unionRectangle, rectangles[i]);
-            }
-            return unionRectangle;
-        }
-    }
-
-    /**
-     * Berechnet die Schnittmenge der übergebenen Rectangles
-     * 
-     * @param rectangles Rectangles, welche geschnitten werden sollen.
-     * @return Die Schnittmenge der Rectangles, also das größte Rectangle das in
-     *         allen enthalten ist.
-     */
-    public static Rectangle intersection(Rectangle... rectangles) {
-        if (rectangles.length < 1) {
-            return null;
-        } else if (rectangles.length == 1) {
-            return rectangles[0];
-        } else {
-            Rectangle intersectRectangle = intersect(rectangles[0], rectangles[1]);
-            for (int i = 2; i < rectangles.length; i++) {
-                intersectRectangle = intersect(intersectRectangle, rectangles[i]);
-            }
-            return intersectRectangle;
         }
     }
 
@@ -208,7 +208,7 @@ public class Rectangle {
     //////////////////////////////////////////////////////////////////
 
     /**
-     * Liefert die x-Koordinates des Rectangles
+     * Liefert die x-Koordinate des Rectangles
      * 
      * @return x-Koordinate des Rectangles.
      */
@@ -217,7 +217,7 @@ public class Rectangle {
     }
 
     /**
-     * Setzt die x-Koordinates des Rectangles
+     * Setzt die x-Koordinate des Rectangles
      * 
      * @param x Der neue Wert der x-Koordinate.
      */
@@ -227,7 +227,7 @@ public class Rectangle {
 
     /**
      * 
-     * Liefert die y-Koordinates des Rectangles
+     * Liefert die y-Koordinate des Rectangles
      * 
      * @return y-Koordinate des Rectangles.
      */
@@ -237,7 +237,7 @@ public class Rectangle {
 
     /**
      * 
-     * Liefert die y-Koordinates des Rectangles
+     * Liefert die y-Koordinate des Rectangles
      * 
      * @param y Der neue Wert der x-Koordinate.
      */

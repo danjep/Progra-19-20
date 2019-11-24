@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[ngerman]{babel}
+\usetikzlibrary{shapes.geometric, arrows}
+\pagestyle{empty}
+\titleformat*{\section}{\large\bfseries}
+
+%
+\geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=30mm,
+ }
+
+\date{}
+%Bitte ausfüllen
+\newcommand\course{Programmierung, Gruppe 16}
+\newcommand\hwnumber{5}
+\newcommand\Name{Maximilian Petri, 405602}
+\newcommand\Neptun{Danje Petersen, 379748}
+
+%Matheinheiten
+\newcommand\m{\:\textrm{m}}
+\newcommand\M{\:\Big[\textrm{m}\Big]}
+\newcommand\mm{\:\textrm{mm}}
+\newcommand\MM{\:\Big[\textrm{mm}\Big]}
+\newcommand\un{\underline}
+\newcommand\s{\:\textrm{s}}
+\newcommand\bS{\:\Big[\textrm{S}\Big]}
+\newcommand\ms{\:\frac{\textrm{m}}{\textrm{s}}}
+\newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
+\newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
+\newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%Einstellungen für lstlisting
+\lstset{
+basicstyle=\fontsize{9}{10}\selectfont\ttfamily, 
+keywordstyle=\color{purple}\bfseries,           % keywords purple
+commentstyle=\color{gray},                     % white comments
+stringstyle=\color{blue},                       % strings blue
+showstringspaces=false,
+language= java}                          % typewriter type for strings                       
+
+
+%Bitte nicht einstellen
+
+\renewcommand{\thesection}{Aufgabe }
+\renewcommand{\thesubsection}{\alph{subsection})}
+\renewcommand{\thesubsubsection}{\hspace{0.8cm}\roman{subsubsection})}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\Name\\\Neptun}
+\chead{\textbf{\Large Hausaufgabe \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section{2)}
+\begin{center}
+    VPL Abgabe von Maximilian Petri
+\end{center}
+
+\section{4)}
+\begin{center}
+
+\subsection{}
+\textbf{4.0}\\
+Es wird der erste Konstruktor benutzt, und somit wird die 4 zum Typ Double umgewandelt und b1.d zugewiesen.
+
+\subsection{}
+\textbf{13}\\
+7d und 8L, also Zahlen vom Typ double und Long werden übergeben. Es gibt keine Funktion f mit genau diesen Datentypen. Da es nach unboxing des Long und autoboxing des double den Typen aus f(Double x, long y) entspricht wird diese Funktion ausgeführt.
+
+\subsection{}
+\textbf{11}\\
+Da der Funktion ein double und ein int übergeben werden wird die f(double x, int y) aufgerufen und deshalb 11 zurückgegeben.
+
+\subsection{}
+\textbf{12}\\
+Es werden ein int und ein Long übergeben. Es existiert keine Funktion f mit exakt diesen Übergabetypen. Durch unboxing und implizites casting wird aus dem Long ein float, wodurch f(int x, float y) benutzt werden kann. 
+
+\subsection{}
+\textbf{6.0}\\
+Für b2 wird der erste Konstruktor benutzt, da man durch unboxing von b1.i1 zu 4 Werten des Typ int kommt, beim zweiten Konstruktor bräuchte man implizites casting von int zu double und int zu float und außerdem autoboxing von double zu Double.
+Da b2.f als float definiert ist, wird die übergebene 6 somit zur 6.0.
+
+\subsection{}
+\textbf{11}\\
+Mit b1.f und b1.i2 werden ein float und ein int übergeben. Durch einmaliges implizites casting wird aus dem float ein double und es wird f(double x, int y) benutzt.
+
+\subsection{}
+\textbf{1.5}\\
+Für b3 muss der zweite Konstruktor benutzt werden, da aus der 1.5 nicht implizit ein int gecastet werden kann.
+Somit wird 1.5 b3.d zugewiesen.
+
+\subsection{}
+\textbf{8.0}\\
+Da implizites casting priorität gegenüber autoboxing hat, wird aus dem Integer b1.i1 eher ein double als ein Float.
+
+\subsection{}
+\textbf{7.0}\\
+Da mit Float.valueOf(18) ein Wert des Typ Float übergeben wird, wird die entsprechende Funktion mit dem Übergabeparameter Float x benutzt.
+
+\subsection{}
+\textbf{11}\\
+Bei b2.g(19f) wird ein Wert vom Typ float zurückgegeben. Dieser kann dann leicht zu double gescastet werden und somit werden double und int übergeben.
+\end{center}
+\end{document}
