@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BoolTreeNode<Blatt 6_92b1e3ea>",
+            "request": "launch",
+            "mainClass": "BoolTreeNode",
+            "projectName": "Blatt 6_92b1e3ea"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Pythagoras<Blatt 6_92b1e3ea>",
+            "request": "launch",
+            "mainClass": "Pythagoras",
+            "projectName": "Blatt 6_92b1e3ea"
+        }
+    ]
+}

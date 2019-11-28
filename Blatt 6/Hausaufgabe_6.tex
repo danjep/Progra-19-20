@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[ngerman]{babel}
+\usetikzlibrary{shapes.geometric, arrows}
+\pagestyle{empty}
+\titleformat*{\section}{\large\bfseries}
+
+%
+\geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=30mm,
+ }
+
+\date{}
+%Bitte ausfüllen
+\newcommand\course{Programmierung, Gruppe 16}
+\newcommand\hwnumber{6}
+\newcommand\Name{Maximilian Petri, 405602}
+\newcommand\Neptun{Danje Petersen, 379748}
+
+%Matheinheiten
+\newcommand\m{\:\textrm{m}}
+\newcommand\M{\:\Big[\textrm{m}\Big]}
+\newcommand\mm{\:\textrm{mm}}
+\newcommand\MM{\:\Big[\textrm{mm}\Big]}
+\newcommand\un{\underline}
+\newcommand\s{\:\textrm{s}}
+\newcommand\bS{\:\Big[\textrm{S}\Big]}
+\newcommand\ms{\:\frac{\textrm{m}}{\textrm{s}}}
+\newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
+\newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
+\newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%Einstellungen für lstlisting
+\lstset{
+basicstyle=\fontsize{9}{10}\selectfont\ttfamily, 
+keywordstyle=\color{purple}\bfseries,           % keywords purple
+commentstyle=\color{gray},                     % white comments
+stringstyle=\color{blue},                       % strings blue
+showstringspaces=false,
+language= java}                          % typewriter type for strings                       
+
+
+%Bitte nicht einstellen
+
+\renewcommand{\thesection}{Aufgabe }
+\renewcommand{\thesubsection}{\alph{subsection})}
+\renewcommand{\thesubsubsection}{\hspace{0.8cm}\roman{subsubsection})}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\Name\\\Neptun}
+\chead{\textbf{\Large Hausaufgabe \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section{2)}
+\begin{lstlisting}
+    /**
+     * Diese Methode zeichnet einen Pythagors Baum auf ein Canvas mit verschiedenen
+     * Einstellungsmoeglichkeiten.
+     * 
+     * @param c            Das Canvas auf dem der Pythagoras Baum gezeichnet werden
+     *                     soll.
+     * @param level        Die Tiefe der Rekursion.
+     * @param length       Die Groesse des ersten Rechtecks.
+     * @param leftAngle    Die Groesse des linken Winkels.
+     * @param rightAngle   Die Groesse des rechten Winkels.
+     * @param switchLength Die Laenge ab welcher alle groesseren Rechtecke Braun 
+     *                     seien sollen.
+     */
+    private static void paintPythagorasTree(
+            Canvas c,
+            int level,
+            double length,
+            int leftAngle,
+            int rightAngle,
+            int switchLength) {
+
+        // check for level
+        if (level < 1) {
+            return;
+        }
+
+        // set color
+        if (length <= switchLength) {
+            c.chooseColor(c.GREEN);
+        } else {
+            c.chooseColor(c.BROWN);
+        }
+
+        // draw Square
+        c.square(length);
+
+        // Right
+        double rightLength = calculateLength(leftAngle, rightAngle, length);
+        c.move(length / 2, -length / 2);
+        c.rotate(rightAngle);
+        c.move(-rightLength / 2, -rightLength / 2);
+
+        paintPythagorasTree(c, level - 1, rightLength, leftAngle, rightAngle, switchLength);
+
+        c.move(rightLength / 2, rightLength / 2);
+        c.rotate(-rightAngle);
+        c.move(-length / 2, length / 2);
+
+        // Left
+        double leftLength = calculateLength(rightAngle, leftAngle, length);
+        c.move(-length / 2, -length / 2);
+        c.rotate(-leftAngle);
+        c.move(leftLength / 2, -leftLength / 2);
+
+        paintPythagorasTree(c, level - 1, leftLength, leftAngle, rightAngle, switchLength);
+
+        c.move(-leftLength / 2, leftLength / 2);
+        c.rotate(leftAngle);
+        c.move(length / 2, length / 2);
+    }
+
+    private static double calculateLength(int alpha, int beta, double length) {
+        return (Math.sin(Math.toRadians(alpha)) * length) / 
+                (Math.sin(Math.toRadians(180 - alpha - beta)));
+    }
+\end{lstlisting}
+
+\section{4)}
+\begin{center}
+    VPL Abgabe von Maximilian Petri
+\end{center}
+
+\end{document}
