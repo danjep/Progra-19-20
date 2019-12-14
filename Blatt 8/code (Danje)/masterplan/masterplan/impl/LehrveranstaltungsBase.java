@@ -21,6 +21,6 @@ abstract class LehrveranstaltungsBase implements Lehrveranstaltung {
 
     public String getDescription() {
 
-        return Beschreibung;
+        return Description;
     }
 }
