@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage[ngerman]{babel}
+\usetikzlibrary{shapes.geometric, arrows}
+\pagestyle{empty}
+\titleformat*{\section}{\large\bfseries}
+
+%
+\geometry{
+ a4paper,
+ total={170mm,240mm},
+ left=20mm,
+ top=30mm,
+ }
+
+\date{}
+%Bitte ausfüllen
+\newcommand\course{Programmierung, Gruppe 16}
+\newcommand\hwnumber{8}
+\newcommand\Name{Maximilian Petri, 405602}
+\newcommand\Neptun{Danje Petersen, 379748}
+
+%Matheinheiten
+\newcommand\m{\:\textrm{m}}
+\newcommand\M{\:\Big[\textrm{m}\Big]}
+\newcommand\mm{\:\textrm{mm}}
+\newcommand\MM{\:\Big[\textrm{mm}\Big]}
+\newcommand\un{\underline}
+\newcommand\s{\:\textrm{s}}
+\newcommand\bS{\:\Big[\textrm{S}\Big]}
+\newcommand\ms{\:\frac{\textrm{m}}{\textrm{s}}}
+\newcommand\MS{\:\Big[\frac{\textrm{m}}{\textrm{s}}\Big]}
+\newcommand\mss{\:\frac{\textrm{m}}{\textrm{s}^2}}
+\newcommand\MSS{\:\Big[\frac{\textrm{m}}{\textrm{s}^2}\Big]}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%Einstellungen für lstlisting
+\lstset{
+basicstyle=\fontsize{9}{10}\selectfont\ttfamily, 
+keywordstyle=\color{purple}\bfseries,           % keywords purple
+commentstyle=\color{gray},                     % white comments
+stringstyle=\color{blue},                       % strings blue
+showstringspaces=false,
+language= java}                          % typewriter type for strings                       
+
+
+%Bitte nicht einstellen
+
+\renewcommand{\thesection}{Aufgabe }
+\renewcommand{\thesubsection}{\alph{subsection})}
+\renewcommand{\thesubsubsection}{\hspace{0.8cm}\roman{subsubsection})}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename}{Tabelle}
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{\Name\\\Neptun}
+\chead{\textbf{\Large Hausaufgabe \hwnumber}}
+\rhead{\course \\ \today}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section{2)}
+\includegraphics[width=1\textwidth]{Klassendiagramm.png}
+
+\section{3)}
+\begin{center}
+    Code von Maximilian Petri
+\end{center}
+
+\end{document}
