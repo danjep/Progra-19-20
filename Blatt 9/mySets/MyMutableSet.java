@@ -9,6 +9,12 @@ public class MyMutableSet extends MyAbstractSet implements Set {
         super(null);
     }
 
+    public MyMinimalSet<T> freezeAndClear() {
+        MyMinimalSet<T> x = new MyImmutableSet<T>(this.head);
+        this.head = null;
+        return x;
+    }
+
     public boolean add(T e) {
         if (contains(e)) {
             return false;
