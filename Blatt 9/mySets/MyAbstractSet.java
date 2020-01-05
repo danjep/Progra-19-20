@@ -6,7 +6,7 @@ import java.lang.UnsupportedOperationException;
 
 abstract class MyAbstractSet<T> implements Iterable, Set {
 
-    private MySetElement<T> head;
+    MySetElement<T> head;
 
     public MyAbstractSet(MySetElement<T> head) {
         this.head = head;
