@@ -1,10 +1,12 @@
+package mySets;
+
 import java.lang.Iterable;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Iterator;
 import java.lang.UnsupportedOperationException;
 
-abstract class MyAbstractSet<T> implements Iterable, Set {
+public abstract class MyAbstractSet<T> implements Iterable, Set {
 
     protected MySetElement<T> head;
 
@@ -49,4 +51,13 @@ abstract class MyAbstractSet<T> implements Iterable, Set {
         }
         return true;
     }
+
+    public Object[] toArray​(Object[] a) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] toArray() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
+    }
+
 }

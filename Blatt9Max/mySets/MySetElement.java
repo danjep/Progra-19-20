@@ -1,4 +1,6 @@
-class MySetElement<T> {
+package mySets;
+
+public class MySetElement<T> {
 
     private T value;
     MySetElement<T> next;

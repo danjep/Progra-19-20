@@ -1,3 +1,5 @@
+package mySets;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
@@ -77,11 +79,7 @@ public class MyMutableSet<T> extends MyAbstractSet implements Set {
         throw new UnsupportedOperationException();
     }
 
-    public <T> T[] toArray​(Object[] a) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] toArray() throws UnsupportedOperationException {
+    public Object[] toArray(Object[] e) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 

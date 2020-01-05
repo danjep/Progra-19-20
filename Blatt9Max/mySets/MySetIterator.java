@@ -1,8 +1,10 @@
+package mySets;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.lang.UnsupportedOperationException;
 
-class MySetIterator<T> implements Iterator {
+public class MySetIterator<T> implements Iterator {
 
     private MySetElement<T> current;
 
