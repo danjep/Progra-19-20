@@ -83,3 +83,16 @@ primeTest n m | m == 1 = True
               | otherwise = primeTest n (m-1)
 
 
+--g)
+multiples :: [Int] -> Int -> Int -> [Int]
+multiples [] a b = []
+multiples (xs) a b 
+            | a >= b = []
+            | otherwise = (multiplet (xs) a) ++ (multiples (xs) (a+1) b)
+
+--HIER STECKT NOCH EIN FEHLER DRIN
+multiplet :: [Int] -> Int -> [Int]
+mutliplet [] a = []
+multiplet (x:xs) a
+            | rem a x == 0 = [a] ++ multiplet xs a
+            | otherwise = multiplet xs a
