@@ -57,3 +57,29 @@ sumNonMins [x]  = 0
 sumNonMins (x : y : xs) 
                 | x<y       = y + sumNonMins (x : xs)
                 | otherwise = sumNonMins (y : xs) 
+
+
+--f)
+primeTwins :: Int -> (Int, Int)
+primeTwins x
+        | prime (x+1) = primeTwint (x+1)
+        | otherwise = primeTwins (x+1)
+
+primeTwint :: Int -> (Int, Int)
+primeTwint x
+        | prime (x+2) = (x, (x+2))
+        | otherwise = primeTwins (x+1)
+
+
+prime :: Int -> Bool
+prime 0 = False
+prime 1 = False
+prime 2 = True
+prime n = primeTest n (n-1)
+
+primeTest :: Int -> Int -> Bool
+primeTest n m | m == 1 = True
+              | (rem n m == 0) = False
+              | otherwise = primeTest n (m-1)
+
+
