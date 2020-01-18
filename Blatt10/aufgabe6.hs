@@ -9,20 +9,22 @@ fibInit a0 a1 n
 
 
 --b)
-{-noch nicht fertig
-
 fibInitL :: Int -> Int -> Int -> [Int]
 fibInitL a0 a1 n
-            | n=(-1)    = []
-            | n=0       = (a0 : fibInitL a0 a1 -1)
-            | otherwise = (a0 : fibInitL a1 (a0+a1) (n-1))
+            | n==(-1)   = []
+            | n==0      = [a0] ++ fibInitL a0 a1 (-1)
+            | otherwise = [a0] ++ fibInitL a1 (a0+a1) (n-1)
 
 
 fibInit2 :: Int -> Int -> Int -> Int
-fibInit2 a0 a1 n 
-            | n=0 = (x: fibInitL a0 a1 n)
+fibInit2 a0 a1 n = help (fibInitL a0 a1 n) n
 
--}
+
+help :: [Int] -> Int -> Int
+help [] a   = 0
+help (x:xs) 0 = x
+help (x:xs) a = help xs (a-1)
+
 
 --c)
 normalize :: [Int] -> [Int]
@@ -39,7 +41,6 @@ diff :: (Int, [Int]) -> [Int]
 diff (0, xs)    = xs
 diff (a, [])    = []
 diff (a, x:xs)  = [(x-a)] ++ diff (a, xs)
-
 
 
 --d)
