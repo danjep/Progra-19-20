@@ -1,13 +1,4 @@
 --a)
-{-
-fibInit :: Int -> Int -> Int -> Int
-fibInit a0 a1 0 = a0
-fibInit a0 a1 1 = a1
-fibInit a0 a1 2 = (a0 + a1)
-fibInit a0 a1 n = fibInit a1 (a0+a1) (n-1)
--}
-
-
 fibInit :: Int -> Int -> Int -> Int
 fibInit a0 a1 n
             | n< 0 = 0
@@ -17,6 +8,7 @@ fibInit a0 a1 n
             | otherwise = fibInit a1 (a0+a1) (n-1)
 
 
+--b)
 {-noch nicht fertig
 
 fibInitL :: Int -> Int -> Int -> [Int]
@@ -33,6 +25,21 @@ fibInit2 a0 a1 n
 -}
 
 --c)
+normalize :: [Int] -> [Int]
+normalize xs = diff (mini xs, xs)
+
+
+mini :: [Int] -> Int
+mini [] = 0
+mini (x:xs)     | x < mini xs = x
+                | otherwise = mini xs
+
+
+diff :: (Int, [Int]) -> [Int]
+diff (0, xs)    = xs
+diff (a, [])    = []
+diff (a, x:xs)  = [(x-a)] ++ diff (a, xs)
+
 
 
 --d)
