@@ -9,20 +9,22 @@ fibInit a0 a1 n
 
 
 --b)
-{-noch nicht fertig
-
 fibInitL :: Int -> Int -> Int -> [Int]
 fibInitL a0 a1 n
-            | n=(-1)    = []
-            | n=0       = (a0 : fibInitL a0 a1 -1)
-            | otherwise = (a0 : fibInitL a1 (a0+a1) (n-1))
+            | n==(-1)   = []
+            | n==0      = [a0] ++ fibInitL a0 a1 (-1)
+            | otherwise = [a0] ++ fibInitL a1 (a0+a1) (n-1)
 
 
 fibInit2 :: Int -> Int -> Int -> Int
-fibInit2 a0 a1 n 
-            | n=0 = (x: fibInitL a0 a1 n)
+fibInit2 a0 a1 n = help (fibInitL a0 a1 n) n
 
--}
+
+help :: [Int] -> Int -> Int
+help [] a   = 0
+help (x:xs) 0 = x
+help (x:xs) a = help xs (a-1)
+
 
 --c)
 normalize :: [Int] -> [Int]
@@ -39,7 +41,6 @@ diff :: (Int, [Int]) -> [Int]
 diff (0, xs)    = xs
 diff (a, [])    = []
 diff (a, x:xs)  = [(x-a)] ++ diff (a, xs)
-
 
 
 --d)
@@ -93,13 +94,14 @@ primeTest n m | m == 1 = True
 --g)
 multiples :: [Int] -> Int -> Int -> [Int]
 multiples [] a b = []
-multiples (xs) a b 
-            | a >= b = []
-            | otherwise = (multiplet (xs) a) ++ (multiples (xs) (a+1) b)
+multiples (xs) a b      | a==b = multiplet xs a 
+                        | a<b  = (multiplet xs a) ++ (multiples xs (a+1) b)
+                        | b<a  = (multiplet xs b) ++ (multiples xs (b+1) a)
 
---HIER STECKT NOCH EIN FEHLER DRIN
+
 multiplet :: [Int] -> Int -> [Int]
 mutliplet [] a = []
 multiplet (x:xs) a
-            | rem a x == 0 = [a] ++ multiplet xs a
+            | rem a x == 0 = [a]
             | otherwise = multiplet xs a
+multiplet _ _ = []
