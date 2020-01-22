@@ -35,8 +35,8 @@ decodeInt (Node a c d) x    | a x == False = decodeInt c x
 --e)
 decode :: BinTree (Int -> Bool) b -> [Int] -> [b]
 decode _ [] = []
-decode (Node a c d) (x:xs) = (decodeInt (Node a c d) x) : (decode (Node a c d) xs)
+decode (Node a c d) (x:xs) = (map (decodeInt (Node a c d) x) xs) ++ decode (Node a c d) xs  -- ALTERNATIV: (decodeInt (Node a c d) x) : (decode (Node a c d) xs)
 
 
 --f)
-
+mapTree :: f (b -> c) -> BinTree a b -> BinTree a c
