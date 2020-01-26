@@ -15,3 +15,6 @@ flatten([[A|B]|C],[A|D]) :- flatten([B|C],D).
 
 
 % d)
+userTree(leaf).
+userTree([node(Wert,Kinder)|Rest]) :- userTree(Rest), userTree(Kinder).
+
