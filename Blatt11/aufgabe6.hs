@@ -40,8 +40,7 @@ listMaximum (Cons a b) = foldList (\x y -> if x > y then x else y) minBound (Con
 
 --e)
 mapList :: (a -> b) -> List a -> List b
-mapList f Nil = Nil
-mapList f (Cons a b) = Cons (f a) (mapList f b)
+mapList f xs = foldList (\y ys -> Cons(f y) ys) Nil xs
 
 
 --f)
