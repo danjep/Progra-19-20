@@ -38,10 +38,10 @@ sumEquals n xs = n == sum xs
 
 -- d)
 
-fib :: [Int]
+fibs :: [Int]
+fibs = fibInit 0 1
 
-
-get :: n [Int] -> Int
-get 1 (x:xs) = x
-get n (x:xs) = get n-1 xs
+fibInit :: Int ->  Int -> [Int]
+fibInit f0 f1 = f0 : f1 : next : fibInit (next + f1) (next + next + f1)
+    where next = (f0 + f1)
 
