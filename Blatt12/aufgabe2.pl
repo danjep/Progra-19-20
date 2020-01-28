@@ -14,8 +14,11 @@ flatten([[A|B]|C],[A|D]) :- flatten([B|C],D).
 
 
 % d)
-userTree(leaf).
-userTree([node(Wert,Kinder)|Rest]) :- userTree(Rest), userTree(Kinder).
+tree(node(_, [])).
+tree(node(V, [X|XS])) :- tree(X) , tree(node(V, XS)).
+
 
 % e)
-
+flattenTree(node([],[]),[]).
+flattenTree(node([],[Y|YS]),[ZS]) :- flattenTree(Y,ZS).
+flattenTree(node([X|XS],[Y|YS],[X|ZS])) :- flattenTree(node(XS,[Y|YS]),ZS).
