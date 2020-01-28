@@ -44,4 +44,3 @@ fibs = fibInit 0 1
 fibInit :: Int ->  Int -> [Int]
 fibInit f0 f1 = f0 : f1 : next : fibInit (next + f1) (next + next + f1)
     where next = (f0 + f1)
-
