@@ -1,7 +1,8 @@
 % a)
-prime(1, N).
-prime(N) :- A is N-1, prime(A, N).
-prime(A, N) :- B is A-1, not(0 is N mod A), prime(B, N).
+prime(N) :- A is N-1, not_div(A, N).
+
+not_div(1,N).
+not_div(A,N) :- B is A-1, not(0 is N mod A), not_div(B,N).
 
 % b)
 only_primes([]).
